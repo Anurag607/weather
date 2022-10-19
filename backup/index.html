@@ -1,0 +1,199 @@
+<!Doctype html>
+<html lang = "en-in/us">
+<head>
+    <link rel = "icon" href = "./cloud-solid.svg" type = "image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="description" content="#">
+    <meta name="keywords" content="#">
+    <meta name="author" content="Deep">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel = "stylesheet" href = "style.css" type = "text/css">
+    <script src = "script.js" type = "text/javascript"></script>
+    <script src ="./node_modules/chart.js/dist/chart.js"></script>
+    <title>Weather</title>
+</head>
+<body>
+
+  <div class="wrapper">
+    <input type="text" id="cityName" placeholder="Enter Your City">
+    <div class="separator"></div>
+    <button id="location">Get Your Location</button>
+  </div>
+
+  <div class="wrapperResult">
+
+    <div class="back">
+      <img src="./images/left.png" alt="back">
+    </div>
+
+    <div class="result">
+
+      <section class="current">
+
+        <div class="subsect">
+          <img src="./images/storm.png" alt="storm clouds">
+          <div class="currentTemp">16°C</div>
+        </div>
+        
+        <div class="subsect">
+          <div class="temp">
+            <div class="minTemp">9°C</div>
+            <div class="maxTemp">22°C</div>
+          </div>
+          <div class="appTemp">Feels like 30°C</div>
+        </div>
+        
+        <div class="desc">thunderstorm</div>
+      
+      </section>
+      <section class="hourly">
+        <div class="hourlyTemp">
+          <li>
+            <div class="time">4 pm</div>
+            <img src="./images/cloudy.png" alt="cloudy">
+            <div class="humidity">
+              <img src="./images/water-drop.svg" alt="water-drop" id="humidityico">
+              <span>17%</span>
+            </div>
+          </li>
+          <li>
+            <div class="time">4 pm</div>
+            <img src="./images/cloudy.png" alt="cloudy">
+            <div class="humidity">
+              <img src="./images/water-drop.svg" alt="water-drop" id="humidityico">
+              <span>17%</span>
+            </div>
+          </li>
+          <li>
+            <div class="time">4 pm</div>
+            <img src="./images/cloudy.png" alt="cloudy">
+            <div class="humidity">
+              <img src="./images/water-drop.svg" alt="water-drop" id="humidityico">
+              <span>17%</span>
+            </div>
+          </li>
+          <li>
+            <div class="time">4 pm</div>
+            <img src="./images/cloudy.png" alt="cloudy">
+            <div class="humidity">
+              <img src="./images/water-drop.svg" alt="water-drop" id="humidityico">
+              <span>17%</span>
+            </div>
+          </li>
+          <li>
+            <div class="time">4 pm</div>
+            <img src="./images/cloudy.png" alt="cloudy">
+            <div class="humidity">
+              <img src="./images/water-drop.svg" alt="water-drop" id="humidityico">
+              <span>17%</span>
+            </div>
+          </li>
+          <li>
+            <div class="time">4 pm</div>
+            <img src="./images/cloudy.png" alt="cloudy">
+            <div class="humidity">
+              <img src="./images/water-drop.svg" alt="water-drop" id="humidityico">
+              <span>17%</span>
+            </div>
+          </li>
+        </div>
+        <canvas id="myChart" width="100vw" height="20vh"></canvas>        
+      </section>
+      <section class="daily">
+        <li>
+          <div class="time">Monday</div>
+          <img src="./images/cloudy.png" alt="cloudy">
+          <span class="nightTemp">Night: 9°C</span>
+          <span class="dayTemp">Day: 22°C</span>
+        </li>
+        <li>
+          <div class="time">Tuesday</div>
+          <img src="./images/cloudy.png" alt="cloudy">
+          <span class="nightTemp">Night: 9°C</span>
+          <span class="dayTemp">Day: 22°C</span>
+        </li>
+        <li>
+          <div class="time">Wednesday</div>
+          <img src="./images/cloudy.png" alt="cloudy">
+          <span class="nightTemp">Night: 9°C</span>
+          <span class="dayTemp">Day: 22°C</span>
+        <li>
+          <div class="time">Thursday</div>
+          <img src="./images/cloudy.png" alt="cloudy">
+          <span class="nightTemp">Night: 9°C</span>
+          <span class="dayTemp">Day: 22°C</span>
+        </li>
+        <li>
+          <div class="time">Friday</div>
+          <img src="./images/cloudy.png" alt="cloudy">
+          <span class="nightTemp">Night: 9°C</span>
+          <span class="dayTemp">Day: 22°C</span>
+        </li>
+        <li>
+          <div class="time">Saturday</div>
+          <img src="./images/cloudy.png" alt="cloudy">
+          <span class="nightTemp">Night: 9°C</span>
+          <span class="dayTemp">Day: 22°C</span>
+        </li>
+        <li>
+          <div class="time">Sunday</div>
+          <img src="./images/cloudy.png" alt="cloudy">
+          <span class="nightTemp">Night: 9°C</span>
+          <span class="dayTemp">Day: 22°C</span>
+        </li>
+      </section>
+    </div>
+  </div>
+  <script>
+    const ctx = document.getElementById('myChart').getContext("2d");
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['', '', '', '', '', ''],
+            datasets: [{
+                data: [2, 6, 3, 5, 2, 3, 1, 4],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            },
+          },
+          scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                  display: false
+                },
+                display: false
+            },
+            x: {
+              ticks: {
+                display: false
+              },
+              display: false
+            },
+          }
+        }
+    });
+    </script>
+</body>
+</html>
